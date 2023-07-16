@@ -192,13 +192,23 @@
 
 //타입추론 이해하기
 //let 과 const 타입추론
-let a = 'ma' // string타입 왜냐하면 재할당될 가능성이 있기 때문에 문자열이라고 알리는것
-const b= 'ma' // 리터럴 타입 변수 재할당이 불가하여 고유의 값이기 때문에
+// let a = 'ma' // string타입 왜냐하면 재할당될 가능성이 있기 때문에 문자열이라고 알리는것
+// const b= 'ma' // 리터럴 타입 변수 재할당이 불가하여 고유의 값이기 때문에
 // 넘버 타입과 불린타입도 동일 
 //그러나 배열형식은 다름 
-let g = [ 'ada','dada']; // string타입 
-const h = [ 'ada','dada']; // string타입 요소들은 재할당이 가능하기 때문
+// let g = [ 'ada','dada']; // string타입 
+// const h = [ 'ada','dada']; // string타입 요소들은 재할당이 가능하기 때문
 //만약 위의 방법을 거스르고 싶다면 
-const i = [ 'ada','dada'] as const; // 리터럴 타입 readonly
+// const i = [ 'ada','dada'] as const; // 리터럴 타입 readonly
+
+//best common type 
+
+let j = [0,1,null];  // (number | null)[]
+const k = [0,1,null]; // (number | null)[]
+
+
+
+ 
+
 
 
