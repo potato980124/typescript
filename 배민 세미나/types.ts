@@ -202,13 +202,85 @@
 // const i = [ 'ada','dada'] as const; // 리터럴 타입 readonly
 
 //best common type 
-
+/*
 let j = [0,1,null];  // (number | null)[]
 const k = [0,1,null]; // (number | null)[]
 
+class animal{}; // class는 class 자체로 타입명이 된다.
+class tiger extends animal{};
+class elephant extends animal{};
+class snake extends animal{};
 
 
- 
+let i = [new tiger(),new elephant(),new snake()];  // (tiger,elephant,snake)[] 
+const m = [new tiger(),new elephant(),new snake()]; // (tiger,elephant,snake)[] 
+const n = [new animal(),new tiger(),new elephant(),new snake()]; //  만약 부모가 요소안에 들어었으면 부모로 추론함
+const o:animal[] = [new animal(),new tiger(),new elephant(),new snake()]; // 이렇게 지정 해줘도됨 지정해주는게 맘 편하다.
+*/
 
+
+// contextual typing - 위치에 따라 추론이 다름
+
+/* const click = (e)=>{
+    e;  //any
+}
+
+document.addEventListener('click',click);
+document.addEventListener('click',(e)=>{
+    e; // mouseevent
+});
+ */
+
+//type guard로 안전함을 파악하기, 중요함!! 코딩의 길라잡이가 됨
+
+
+// type of type guard 방식 - 보통 primitive 타입일 경우
+// function gerNumber(value: number | string): number {
+//     value;
+//     if(typeof value === "number"){
+//         value;
+//         return value;
+//     }
+//     value;
+//     return -1;
+// }
+
+
+// instanceof type guard  - 에러 객체 구분에 많이 쓰인다.
+
+// class nagaticenumbererror extends Error{};
+
+// function getNumber (value:number):number | nagaticenumbererror{
+//     if(value < 0) return new nagaticenumbererror();
+//     return value;
+// }
+
+// function main(){
+//     const num = getNumber(-10);
+//     if(num instanceof nagaticenumbererror){
+//         return;
+//     } // getNumber의 반환값이 무조건 number여야 하기 때문에 에러처리를 해줘야함 이때 instanceof를 많이씀
+//     num;
+// }
+
+
+// in operator type guard - object의 프로퍼티 유무로 처리하는 경우
+
+// interface admin{
+//     id: string;
+//     role: string;
+// }
+// interface user{
+//     id: string;
+//     email: string;
+// }
+
+// function redirect(user: admin | user){
+//     if("role" in user){
+//         roteTo(user.role);
+//     }else{
+//         roteToHome(user.email);
+//     }
+// }
 
 
