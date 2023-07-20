@@ -210,3 +210,65 @@ document.addEventListener('click',(e)=>{
 //         roteToHome(user.email);
 //     }
 // }
+/* // literal type guard - object의 프로퍼티가 같고, 타입이 다른겨우
+
+interface IMachine {
+    type: string;
+}
+
+// 자바스크립트에 extends가 있다면 타입스크립트에는 implements가있다.
+// interface와 class를 동시에 확장 가능하다
+// 오로지 타입체크를 위해 사용되는 것이고, 안의 값을 자동으로 바꾸어주지 않는다
+class Car implements IMachine{
+    type: "car";
+    wheel: number;
+}
+class Boat implements IMachine{
+    type: "boat";
+    motor: number;
+}
+
+function getWheelorMotor(machine:Car|Boat):number{
+if(machine.type === 'car'){
+    return machine.wheel;
+}else {
+    return machine.motor;
+}
+} */
+// custom type guard 마땅히 추론할 형식이 없을 때 내가 직접 커스텀해서 사용하겠다라는 느낌
+// class Car implements IMachine{ 
+//     type: "car";
+//     wheel: number;
+// }
+// class Boat implements IMachine{ 
+//     type: "boat";
+//     motor: number;
+// }
+// function getWheelorMotor(machine: any): number{
+//     if(isCar(machine)){
+//         return machine.wheel;
+//     }else if(isBoat(machine)){
+//         return machine.motor;
+//     }else{
+//         return -1;
+//     }
+// }
+// function isCar(arg:any):arg is Car {
+//     return arg.type ==='car';
+// }
+// function isBoat(arg:any):arg is Boat {
+//     return arg.type ==='boat';
+// }
+//안전한 class사용법 
+// class 프로퍼티의 타입을 명시적으로 지정해야한다.
+/* class exe2{
+    area: number;
+    length: number;
+}
+const exe22 = new exe2();
+console.log(exe22.area); // 명시적으로 정해도 값이 들어가지 않았기 때문에 컴파일에서는 넘버로 런타임에서는 undifined로 됨
+console.log(exe22.length);
+ */
+//그래서 strictpropertyinitialization 옵션을 켜면 클래스의 프로퍼티가 값이 지정되지 않으면 컴파일 에러를 발생 시켜준다.
+//프로퍼티에 바로 값을 초기화 해주거나 컨스터럭터에서 값을 지정해주면  런타임 오류가 사라진다
+//생성자를 벗어나면 추론이 되지 않는다. 생성자를 벗어나서 추론을 하길 원할 때는 !:로 의도를 표현해야함

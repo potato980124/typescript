@@ -87,5 +87,6 @@
     "noImplicitReturns": true,
     "skipLibCheck": true,                              /* Skip type checking all .d.ts files. */
     "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
   }
 }
